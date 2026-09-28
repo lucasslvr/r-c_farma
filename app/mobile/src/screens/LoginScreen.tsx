@@ -19,6 +19,10 @@ import { PrimaryButton } from "../components/ui/PrimaryButton";
 import { TextLink } from "../components/ui/TextLink";
 import { SocialLoginButton } from "../components/auth/SocialLoginButton";
 
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../navigation/AppNavigator";
+
 
 export function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -26,19 +30,23 @@ export function LoginScreen() {
 
   function handleAcessar() {
     console.log("Acessar pressionado", { email, senha });
+    navigation.navigate("Main");
   }
 
   function handleCriarConta() {
-    console.log("Criar conta pressionado");
+  navigation.navigate("CriarConta");
   }
 
   function handleEsqueciSenha() {
-    console.log("Esqueci minha senha pressionado");
+    navigation.navigate("EsqueciSenha");
   }
 
   function handleSocialLogin(provider: "facebook" | "google") {
     console.log("Login social pressionado:", provider);
   }
+
+  type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Login">;
+  const navigation = useNavigation<NavigationProp>();
 
   return (
     <View style={styles.container}>
@@ -65,8 +73,7 @@ export function LoginScreen() {
           contentContainerStyle={styles.scrollContent}
           keyboardShouldPersistTaps="handled"
         >
-          <Text style={styles.brandTitle}>FARMÁCIA</Text>
-
+          
           <Image
             source={require("../../assets/logo.png")}
             style={styles.logo}
@@ -158,15 +165,9 @@ const styles = StyleSheet.create({
     paddingTop: 48,
     paddingBottom: 32,
   },
-  brandTitle: {
-    ...typography.title,
-    color: colors.textOnPrimary,
-    letterSpacing: 1,
-    marginBottom: 12,
-  },
   logo: {
-    width: 120,
-    height: 120,
+    width: 250,
+    height: 153,
     marginBottom: 20,
   },
   welcome: {

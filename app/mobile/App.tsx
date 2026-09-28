@@ -1,7 +1,7 @@
 import React from "react";
 import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold, Poppins_700Bold } from "@expo-google-fonts/poppins";
 import { View, ActivityIndicator } from "react-native";
-import { LoginScreen } from "./src/screens/LoginScreen";
+import { AppNavigator } from "./src/navigation/AppNavigator";
 import { colors } from "./src/theme/colors";
 
 export default function App() {
@@ -20,5 +20,5 @@ export default function App() {
     );
   }
 
-  return <LoginScreen />;
+  return <AppNavigator />;
 }
